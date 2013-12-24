@@ -20,7 +20,7 @@ public class PosixEndpoint implements Endpoint {
 		this.connectedEndpoint = endpoint;
 	}
 
-	public void send(String message) {
+	public void process(String message) {
 		if(out == null)		// no client connected
 			return;
 		out.print(message);
@@ -48,7 +48,7 @@ public class PosixEndpoint implements Endpoint {
         	data = in.readLine();
 			while (data != null) {			// null indicates end-of-stream
 				if(connectedEndpoint != null)	{
-					connectedEndpoint.send(data);
+					connectedEndpoint.process(data);
 				}
 				System.out.println("Sent message from POSIX to WebSocket: " + data);
 				data = in.readLine();

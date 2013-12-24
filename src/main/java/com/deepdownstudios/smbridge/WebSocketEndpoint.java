@@ -32,7 +32,7 @@ public class WebSocketEndpoint  extends WebSocketServer implements Endpoint {
 	@Override
 	public void onMessage( WebSocket conn, String message ) {
 		if(connectedEndpoint != null)	{
-			connectedEndpoint.send(message);
+			connectedEndpoint.process(message);
 		}
 	
 		//System.out.println( conn + ": " + message );
@@ -60,7 +60,7 @@ public class WebSocketEndpoint  extends WebSocketServer implements Endpoint {
 	 * @param text	The String to send across the network.
 	 * @throws InterruptedException  When socket related I/O errors occur.
 	 */
-	public void send( String text ) {
+	public void process( String text ) {
 		Collection<WebSocket> con = connections();
 		synchronized ( con ) {
 			for( WebSocket c : con ) {
