@@ -56,20 +56,6 @@ public class PosixEndpoint implements Endpoint {
 		} catch (IOException e) {
 			System.err.println("ERROR: Exception while listening to POSIX connection: " + e.getMessage());
 			throw e;
-		} finally {
-			out.close();
-			try {
-				in.close();
-			} catch (IOException e) {
-				System.err.println("ERROR: Exception while closing POSIX input stream: " + e.getMessage());
-			}
-		
-			close();
-		
-			out = null;
-			in = null;
-			clientSocket = null;
-			System.out.println("POSIX connection has been closed.");
 		}
 	}
 
